@@ -12,7 +12,7 @@
     <DefaultLanguage>fr-FR</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -119,10 +119,38 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="dialogs\GradeDialog.xaml.cs">
+      <DependentUpon>GradeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="dialogs\ModuleDialog.xaml.cs">
+      <DependentUpon>ModuleDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="dialogs\UnitDialog.xaml.cs">
+      <DependentUpon>UnitDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="model\Grade.cs" />
+    <Compile Include="model\LearningUnit.cs" />
+    <Compile Include="model\LoginInfos.cs" />
+    <Compile Include="model\Module.cs" />
+    <Compile Include="model\Token.cs" />
+    <Compile Include="pages\AddUnit.xaml.cs">
+      <DependentUpon>AddUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Empty.xaml.cs">
+      <DependentUpon>Empty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\LearningUnitView.xaml.cs">
+      <DependentUpon>LearningUnitView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="services\PsApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -130,6 +158,29 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\splashscreen.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -144,14 +195,51 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="dialogs\GradeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="dialogs\ModuleDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="dialogs\UnitDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="pages\AddUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\Empty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pages\LearningUnitView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client">
+      <Version>5.2.7</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.9</Version>
+      <Version>6.2.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.3.200213001</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

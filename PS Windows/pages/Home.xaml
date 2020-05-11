@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="PS_Windows.pages.Home"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PS_Windows.pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls" xmlns:model="using:PS_Windows.model"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <muxc:NavigationView MenuItemsSource="{x:Bind learningUnits}" SelectedItem="{x:Bind selectedUnit}"
+                             SelectionChanged="handleChangeSelectedUnit">
+            <muxc:NavigationView.MenuItemTemplate>
+                <DataTemplate x:DataType="model:LearningUnit">
+                    <muxc:NavigationViewItem Content="{Binding name}" Tag="{Binding id}" />
+                </DataTemplate>
+            </muxc:NavigationView.MenuItemTemplate>
+            <muxc:NavigationView.PaneFooter>
+                <muxc:NavigationViewItem Icon="Add" Content="Add Unit" Tapped="handleClickAddUnit" />
+            </muxc:NavigationView.PaneFooter>
+            <Frame x:Name="contentFrame" />
+        </muxc:NavigationView>
+    </Grid>
+</Page>

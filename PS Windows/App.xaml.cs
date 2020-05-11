@@ -26,8 +26,7 @@ namespace PS_Windows
         /// Initialise l'objet d'application de singleton.  Il s'agit de la première ligne du code créé
         /// à être exécutée. Elle correspond donc à l'équivalent logique de main() ou WinMain().
         /// </summary>
-        public App()
-        {
+        public App() {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
@@ -37,21 +36,18 @@ namespace PS_Windows
         /// seront utilisés par exemple au moment du lancement de l'application pour l'ouverture d'un fichier spécifique.
         /// </summary>
         /// <param name="e">Détails concernant la requête et le processus de lancement.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
-        {
+        protected override void OnLaunched(LaunchActivatedEventArgs e) {
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Ne répétez pas l'initialisation de l'application lorsque la fenêtre comporte déjà du contenu,
             // assurez-vous juste que la fenêtre est active
-            if (rootFrame == null)
-            {
+            if (rootFrame == null) {
                 // Créez un Frame utilisable comme contexte de navigation et naviguez jusqu'à la première page
                 rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated) {
                     //TODO: chargez l'état de l'application précédemment suspendue
                 }
 
@@ -59,15 +55,14 @@ namespace PS_Windows
                 Window.Current.Content = rootFrame;
             }
 
-            if (e.PrelaunchActivated == false)
-            {
-                if (rootFrame.Content == null)
-                {
+            if (e.PrelaunchActivated == false) {
+                if (rootFrame.Content == null) {
                     // Quand la pile de navigation n'est pas restaurée, accédez à la première page,
                     // puis configurez la nouvelle page en transmettant les informations requises en tant que
                     // paramètre
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
+
                 // Vérifiez que la fenêtre actuelle est active
                 Window.Current.Activate();
             }
@@ -78,8 +73,7 @@ namespace PS_Windows
         /// </summary>
         /// <param name="sender">Frame à l'origine de l'échec de navigation.</param>
         /// <param name="e">Détails relatifs à l'échec de navigation</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
-        {
+        void OnNavigationFailed(object sender, NavigationFailedEventArgs e) {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
@@ -90,8 +84,7 @@ namespace PS_Windows
         /// </summary>
         /// <param name="sender">Source de la requête de suspension.</param>
         /// <param name="e">Détails de la requête de suspension.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
-        {
+        private void OnSuspending(object sender, SuspendingEventArgs e) {
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: enregistrez l'état de l'application et arrêtez toute activité en arrière-plan
             deferral.Complete();

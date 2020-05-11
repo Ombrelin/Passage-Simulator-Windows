@@ -9,6 +9,12 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBox Header="Login" Text="{x:Bind login, Mode=TwoWay}" PlaceholderText="Login..."
+                     HorizontalAlignment="Center" Width="400" />
+            <PasswordBox Header="Password" Password="{x:Bind password, Mode=TwoWay}" PlaceholderText="Password..."
+                         HorizontalAlignment="Center" Width="400" Margin="16" />
+            <Button Click="handleClickLogin" HorizontalAlignment="Center" Content="Login" Width="400"/>
+        </StackPanel>
     </Grid>
 </Page>
